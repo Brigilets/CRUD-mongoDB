@@ -1,7 +1,5 @@
 //CRUD create read update delete
-// const mongodb = require('mongodb')
-// const MongoClient = mongodb.MongoClient
-// const ObjectId = mongoDB.ObjectID
+
 const { MongoClient, ObjectID, FindCursor } = require('mongodb')
 const dotenv = require('dotenv')
 
@@ -9,47 +7,15 @@ dotenv.config()
 const connectionURL = process.env.DBURL
 const databaseName = process.env.DBNAME
 
-//const id = new ObjectID()
-//console.log(id.id.length)
-//console.log(id.toHexString().length)
 
 //checking if we are connected to the db
 MongoClient.connect(connectionURL, {useNewUrlParser: true},(error,client)=>{
 if(error){
     return console.log('Unable to connect to database!')
 }
-//console.log('Connected correctly!')
+
 //gives db reference:
 const db = client.db(databaseName)
-
-// insert document inside users collection
-/*db.collection('users').insertOne({
-  _id
-    name:"John",
-    age:29
-}, (error,result)=>{
-    if(error){
-        return console.log('Unable to insert user')
-    }
-    console.log(result.insertedId)
-    })
-
-   db.collection('users').insertMany([
-        {
-            name:'Dan',
-            age:35
-        },{
-            name:'Julien',
-            age: 36
-        }
-    ], (error,result)=>{
-        if(error){
-            return console.log('Unable to insert users')
-        }
-
-        console.log(result.insertedIds)
-    })
-*/
 
 db.collection('tasks').insertMany([
     {
@@ -70,7 +36,7 @@ db.collection('tasks').insertMany([
     }
 
     console.log(result.insertedIds)
-})*/
+})
 //searching for user in our db by name in this case
 //IF user DOES NOT exist in db, it will return null (not error) 
 
